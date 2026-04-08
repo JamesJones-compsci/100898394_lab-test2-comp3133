@@ -1,6 +1,5 @@
 <!-- app.html -->
 
-<!-- Material Toolbar -->
 <mat-toolbar color="primary" class="app-toolbar">
   <span class="app-title">{{ title() }}</span>
 
@@ -11,12 +10,14 @@
   <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
     Character List
   </a>
-  <a mat-button routerLink="/character/1" routerLinkActive="active-link">
-    Character Details
+
+  <!-- Character Details test link: must use a valid UUID from API -->
+  <a mat-button routerLink="/character/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8" routerLinkActive="active-link">
+    Harry Potter Details
   </a>
 </mat-toolbar>
 
-<!-- Main content area -->
+<!-- Main content -->
 <div class="main-content">
   <router-outlet></router-outlet>
 </div>
