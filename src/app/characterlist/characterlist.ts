@@ -1,68 +1,85 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// Angular Material modules
+// Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CharacterService } from '../shared/character-service';
 import { Character } from '../models/character';
 
 @Component({
   selector: 'app-characterlist',
-  standalone: true, // <-- makes this component standalone
+  standalone: true,
   imports: [
-    CommonModule,      // Needed for *ngFor, *ngIf
-    FormsModule,       // Needed for [(ngModel)]
+    CommonModule,
+    FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatCardModule
+    MatCardModule,
+    MatProgressSpinnerModule
   ],
   templateUrl: './characterlist.html',
   styleUrls: ['./characterlist.css']
 })
 export class Characterlist {
-
-  // Inject services
   private service = inject(CharacterService);
   private router = inject(Router);
 
   characters: Character[] = [];
   selectedHouse: string = "";
+  loading = signal(false); // For optional loading spinner
 
-  // Load all characters on component init
   ngOnInit() {
     this.loadCharacters();
   }
 
-  // Fetch all characters
   loadCharacters() {
+    this.loading.set(true);
     this.service.getCharacters().subscribe({
       next: (data: Character[]) => {
-        this.characters = data;
+        this.characters = data.map(c => this.normalizeCharacter(c));
+        this.loading.set(false);
       },
-      error: (err) => console.error('Error fetching characters', err)
+      error: (err) => {
+        console.error('Error fetching characters', err);
+        this.loading.set(false);
+      }
     });
   }
 
-  // Filter characters by house
   filterByHouse() {
+    this.loading.set(true);
     if (!this.selectedHouse) {
       this.loadCharacters();
     } else {
-      this.service.getCharactersByHouse(this.selectedHouse)
-        .subscribe({
-          next: (data: Character[]) => this.characters = data,
-          error: (err) => console.error('Error filtering by house', err)
-        });
+      this.service.getCharactersByHouse(this.selectedHouse).subscribe({
+        next: (data: Character[]) => {
+          this.characters = data.map(c => this.normalizeCharacter(c));
+          this.loading.set(false);
+        },
+        error: (err) => {
+          console.error('Error filtering by house', err);
+          this.loading.set(false);
+        }
+      });
     }
   }
 
-  // Navigate to character detail page
   viewDetails(character: Character) {
     this.router.navigate(['/character', character.id]);
+  }
+
+  // Normalize data for display
+  normalizeCharacter(char: Character): Character {
+    return {
+      ...char,
+      house: char.house ? char.house[0].toUpperCase() + char.house.slice(1).toLowerCase() : 'Unknown House',
+      image: char.image || 'assets/fallback-character.png' // fallback image
+    };
   }
 }

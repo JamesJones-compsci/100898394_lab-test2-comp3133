@@ -1,7 +1,12 @@
-<!-- characterdetails.html -->
 <a mat-button routerLink="/">← Back to List</a>
 
-<div *ngIf="character">
+<!-- Loading indicator -->
+<div class="spinner" *ngIf="loading()">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>
+
+<!-- Character Details -->
+<div *ngIf="!loading() && character">
   <mat-card>
     <img mat-card-image [src]="character.image" alt="{{ character.name }}">
 
@@ -18,4 +23,9 @@
     <p>Core: {{ character.wand?.core ?? 'Unknown' }}</p>
     <p>Length: {{ character.wand?.length ?? 'Unknown' }}</p>
   </mat-card>
+</div>
+
+<!-- Message if no character found -->
+<div *ngIf="!loading() && !character">
+  <p>Character not found.</p>
 </div>

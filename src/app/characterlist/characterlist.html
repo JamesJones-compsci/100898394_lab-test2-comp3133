@@ -1,6 +1,7 @@
 <h1>Character List</h1>
+<p class="hint">Click on a character to see their details.</p>
 
-<!-- Filter by House (optional) -->
+<!-- Filter by House -->
 <mat-form-field appearance="fill">
   <mat-label>Filter by House</mat-label>
   <mat-select [(value)]="selectedHouse" (selectionChange)="filterByHouse()">
@@ -12,11 +13,16 @@
   </mat-select>
 </mat-form-field>
 
+<!-- Loading spinner -->
+<div class="spinner" *ngIf="loading()">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>
+
 <!-- Character Grid -->
-<div class="grid">
+<div class="grid" *ngIf="!loading()">
   <mat-card *ngFor="let char of characters" class="card" (click)="viewDetails(char)">
-    <img mat-card-image [src]="char.image" alt="{{ char.name }}">
+    <img mat-card-image [src]="char.image" [alt]="char.name">
     <mat-card-title>{{ char.name }}</mat-card-title>
-    <mat-card-subtitle>{{ char.house ?? 'Unknown House' }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ char.house }}</mat-card-subtitle>
   </mat-card>
 </div>

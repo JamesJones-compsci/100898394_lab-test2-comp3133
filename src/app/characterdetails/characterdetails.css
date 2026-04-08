@@ -1,0 +1,35 @@
+/* Back button */
+a[mat-button] {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Spinner container */
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+/* Card styling */
+mat-card {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Card image */
+mat-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Wand heading */
+h3 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}

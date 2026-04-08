@@ -1,59 +1,14 @@
-/* characterlist.css */
-
-/* Page title */
-h1 {
+/* Hint message */
+.hint {
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #3f51b5; /* Material primary color */
+  margin-bottom: 10px;
+  font-style: italic;
+  color: #555;
 }
 
-/* Filter dropdown */
-mat-form-field {
-  width: 200px;
-  display: block;
-  margin: 0 auto 20px auto;
-}
-
-/* Character grid layout */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-  padding: 10px;
-}
-
-/* Character card styling */
-.card {
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Hover effect for cards */
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
-}
-
-/* Card image styling */
-mat-card img {
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-}
-
-/* Card title and subtitle */
-mat-card-title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-mat-card-subtitle {
-  font-size: 14px;
-  color: #666;
+/* Spinner container */
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
