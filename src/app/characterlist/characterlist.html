@@ -1,1 +1,22 @@
-<p>characterlist works!</p>
+<h1>Harry Potter Characters</h1>
+
+<mat-form-field>
+  <mat-label>House</mat-label>
+  <mat-select [(ngModel)]="selectedHouse" (selectionChange)="filterByHouse()">
+    <mat-option value="">All</mat-option>
+    <mat-option value="Gryffindor">Gryffindor</mat-option>
+    <mat-option value="Slytherin">Slytherin</mat-option>
+    <mat-option value="Hufflepuff">Hufflepuff</mat-option>
+    <mat-option value="Ravenclaw">Ravenclaw</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="grid">
+  <mat-card *ngFor="let c of characters" (click)="viewDetails(c)">
+    <img mat-card-image [src]="c.image" />
+    <mat-card-title>{{ c.name }}</mat-card-title>
+    <mat-card-content>
+      <p>{{ c.house }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

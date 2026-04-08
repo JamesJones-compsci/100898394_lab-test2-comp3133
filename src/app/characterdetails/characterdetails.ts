@@ -1,12 +1,20 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+
 import { CharacterService } from '../shared/character-service';
 import { Character } from '../models/character';
 
 @Component({
   selector: 'app-characterdetails',
+  standalone: true,   // <-- makes this component standalone
+  imports: [
+    CommonModule,      // Needed for *ngIf
+    MatCardModule      // Needed for mat-card
+  ],
   templateUrl: './characterdetails.html',
-  styleUrls: ['./characterdetails.css'],
+  styleUrls: ['./characterdetails.css']
 })
 export class Characterdetails {
 

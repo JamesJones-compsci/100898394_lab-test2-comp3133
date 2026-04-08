@@ -1,1 +1,18 @@
-<p>characterdetails works!</p>
+<div *ngIf="character">
+  <mat-card>
+    <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+
+    <mat-card-title>{{ character.name }}</mat-card-title>
+
+    <p>Species: {{ character.species ?? 'Unknown' }}</p>
+    <p>House: {{ character.house ?? 'Unknown' }}</p>
+    <p>Wizard: {{ character.wizard === true ? 'Yes' : 'No' }}</p>
+    <p>Ancestry: {{ character.ancestry ?? 'Unknown' }}</p>
+    <p>Actor: {{ character.actor ?? 'Unknown' }}</p>
+
+    <h3>Wand</h3>
+    <p>Wood: {{ character.wand?.wood ?? 'Unknown' }}</p>
+    <p>Core: {{ character.wand?.core ?? 'Unknown' }}</p>
+    <p>Length: {{ character.wand?.length ?? 'Unknown' }}</p>
+  </mat-card>
+</div>
