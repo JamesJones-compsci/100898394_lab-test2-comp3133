@@ -1,24 +1,17 @@
-<!-- This file should contain HTML template, not TypeScript code -->
-<!-- The component logic should be in app.ts -->
+<!-- app.html -->
 
-<div>
-  <h1>{{ title() }}</h1>
+<!-- Material Toolbar -->
+<mat-toolbar color="primary">
+  <span>{{ title() }}</span> <!-- Display your app title using the signal -->
   
-  <div class="character-card">
-    <img [src]="character.image" [alt]="character.name">
-    <h2>{{ character.name }}</h2>
-    <p>Species: {{ character.species }}</p>
-    <p>House: {{ character.house }}</p>
-    <p>Wizard: {{ character.wizard ? 'Yes' : 'No' }}</p>
-    <p>Ancestry: {{ character.ancestry }}</p>
-    <p>Actor: {{ character.actor }}</p>
-    <div class="wand">
-      <h3>Wand</h3>
-      <p>Wood: {{ character.wand.wood }}</p>
-      <p>Core: {{ character.wand.core }}</p>
-      <p>Length: {{ character.wand.length }}</p>
-    </div>
-  </div>
-  
+  <!-- Navigation links -->
+  <span class="spacer"></span>
+  <a mat-button routerLink="/characters" routerLinkActive="active-link">Character List</a>
+  <!-- Example static link to a character details page with id=1 -->
+  <a mat-button routerLink="/character/1" routerLinkActive="active-link">Character Details</a>
+</mat-toolbar>
+
+<!-- Router outlet -->
+<div class="main-content">
   <router-outlet></router-outlet>
 </div>
