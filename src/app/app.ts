@@ -1,12 +1,29 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
+
+// Standalone components
+import { Characterlist } from './characterlist/characterlist';
+import { Characterdetails } from './characterdetails/characterdetails';
+
+// Angular Material modules (if you want to use Material in App component)
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.html', // correct
-  styleUrls: ['./app.css']   // <-- plural, Angular expects this
+  imports: [
+    CommonModule,       // Needed for ngIf, ngFor, etc.
+    RouterOutlet,       // Router outlet for lazy loading / navigation
+    RouterModule,       // Required for routerLink, navigation
+    MatToolbarModule,   // Optional if you use a toolbar
+    MatIconModule,      // Optional if you use Material icons
+    Characterlist,      // Import standalone child component
+    Characterdetails    // Import standalone child component
+  ],
+  templateUrl: './app.html',
+  styleUrls: ['./app.css']
 })
 export class App {
   // Title signal
