@@ -11,8 +11,8 @@ import { Character } from '../models/character';
   standalone: true,   // <-- makes this component standalone
   imports: [
     CommonModule,      // Needed for *ngIf
-    MatCardModule,
-    RouterModule      // Needed for mat-card
+    MatCardModule,     // Needed for mat-card
+    RouterModule      
   ],
   templateUrl: './characterdetails.html',
   styleUrls: ['./characterdetails.css']
