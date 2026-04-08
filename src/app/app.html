@@ -1,17 +1,22 @@
 <!-- app.html -->
 
 <!-- Material Toolbar -->
-<mat-toolbar color="primary">
-  <span>{{ title() }}</span> <!-- Display your app title using the signal -->
-  
-  <!-- Navigation links -->
+<mat-toolbar color="primary" class="app-toolbar">
+  <span class="app-title">{{ title() }}</span>
+
+  <!-- Spacer pushes links to the right -->
   <span class="spacer"></span>
-  <a mat-button routerLink="/characters" routerLinkActive="active-link">Character List</a>
-  <!-- Example static link to a character details page with id=1 -->
-  <a mat-button routerLink="/character/1" routerLinkActive="active-link">Character Details</a>
+
+  <!-- Navigation links -->
+  <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+    Character List
+  </a>
+  <a mat-button routerLink="/character/1" routerLinkActive="active-link">
+    Character Details
+  </a>
 </mat-toolbar>
 
-<!-- Router outlet -->
+<!-- Main content area -->
 <div class="main-content">
   <router-outlet></router-outlet>
 </div>
