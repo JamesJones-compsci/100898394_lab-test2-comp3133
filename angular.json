@@ -1,11 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "cli": {
-    "packageManager": "npm",
-    "analytics": false
-  },
-  "newProjectRoot": "projects",
   "projects": {
     "100898394-lab-test2-comp3133": {
       "projectType": "application",
@@ -14,7 +9,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/build:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/100898394-lab-test2-comp3133",
             "index": "src/index.html",
@@ -22,58 +17,43 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public",
-                "output": "/"
-              }
+              { "glob": "**/*", "input": "public", "output": "/" }
             ],
-            "styles": [
-              "src/material-theme.scss",
-              "src/styles.css"
-            ],
+            "styles": ["src/material-theme.scss","src/styles.css"],
             "scripts": []
           },
           "configurations": {
             "production": {
               "optimization": true,
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "sourceMap": false
             },
             "development": {
               "optimization": false,
               "sourceMap": true
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "serve": {
-          "builder": "@angular/build:dev-server",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "100898394-lab-test2-comp3133:build"
+            "buildTarget": "100898394-lab-test2-comp3133:build:development"
           },
           "configurations": {
             "production": {
-              "browserTarget": "100898394-lab-test2-comp3133:build:production"
+              "buildTarget": "100898394-lab-test2-comp3133:build:production"
             },
             "development": {
-              "browserTarget": "100898394-lab-test2-comp3133:build:development"
+              "buildTarget": "100898394-lab-test2-comp3133:build:development"
             }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "assets": [],
-            "styles": [],
-            "scripts": []
-          }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "9bde2021-b2be-41c0-92dd-0ae9fe4e64a3"
   }
 }
